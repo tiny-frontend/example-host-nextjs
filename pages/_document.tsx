@@ -1,16 +1,17 @@
+import { TinyFrontendSsrConfig } from "@tiny-frontend/client";
+import { TinyHead } from "@tiny-frontend/tiny-client-react";
 import Document, {
   DocumentContext,
   DocumentInitialProps,
   Head,
   Html,
   Main,
-  NextScript
+  NextScript,
 } from "next/document";
 import React from "react";
-import { ensureExampleTinyFrontendLoadedServer } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.server";
 import { ServerStyleSheet } from "styled-components";
-import { TinyFrontendSsrConfig } from "@tiny-frontend/client";
-import { TinyHead } from "@tiny-frontend/tiny-client-react";
+
+import { ensureExampleTinyFrontendLoadedServer } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.server";
 
 interface CustomInitialProps extends DocumentInitialProps {
   tinyFrontendSsrConfig: TinyFrontendSsrConfig;
@@ -44,7 +45,8 @@ export default class LayoutDocument extends Document<CustomInitialProps> {
 
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
@@ -57,7 +59,7 @@ export default class LayoutDocument extends Document<CustomInitialProps> {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        )
+        ),
       };
     } finally {
       sheet.seal();

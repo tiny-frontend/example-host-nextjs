@@ -1,6 +1,6 @@
 import {
   ExampleTinyFrontendType,
-  loadExampleTinyFrontendServer
+  loadExampleTinyFrontendServer,
 } from "@tiny-frontend/example-tiny-frontend-contract";
 
 export let ExampleTinyFrontendServer: ExampleTinyFrontendType;
