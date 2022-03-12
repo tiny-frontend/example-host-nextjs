@@ -6,6 +6,4 @@ const loader = async () =>
     "https://tiny-frontent-api-cloudlare-example.gnomesgames.workers.dev/api"
   );
 
-const ExampleTinyFrontendClient = withHydrationSuppress(loader);
-
-export default ExampleTinyFrontendClient;
+export const ExampleTinyFrontendClient = withHydrationSuppress(loader);
