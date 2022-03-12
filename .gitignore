@@ -39,3 +39,6 @@ yarn-error.log*
 # yalc
 .yalc
 yalc.lock
+
+# JetBrains
+.idea
