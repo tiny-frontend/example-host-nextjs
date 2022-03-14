@@ -1,4 +1,5 @@
 import { TinyFrontendSsrConfig } from "@tiny-frontend/client";
+import { ExampleTinyFrontendType } from "@tiny-frontend/example-tiny-frontend-contract";
 import { TinyHead } from "@tiny-frontend/tiny-client-react";
 import Document, {
   DocumentContext,
@@ -11,21 +12,28 @@ import Document, {
 import React from "react";
 import { ServerStyleSheet } from "styled-components";
 
-import { ensureExampleTinyFrontendLoadedServer } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.server";
+import { loadTinyFrontendServer } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.server";
+import { ExampleTinyFrontendServerContext } from "../components/ExampleTinyFrontend/ExampleTinyFrontendServerContext";
 
 interface CustomInitialProps extends DocumentInitialProps {
   tinyFrontendSsrConfig: TinyFrontendSsrConfig;
+  ExampleTinyFrontendServer: ExampleTinyFrontendType;
 }
 export default class LayoutDocument extends Document<CustomInitialProps> {
   render(): React.ReactElement {
-    const { tinyFrontendSsrConfig } = this.props;
+    const { tinyFrontendSsrConfig, ExampleTinyFrontendServer } = this.props;
+
     return (
       <Html lang="en">
         <Head>
           <TinyHead config={tinyFrontendSsrConfig} />
         </Head>
         <body>
-          <Main />
+          <ExampleTinyFrontendServerContext.Provider
+            value={{ ExampleTinyFrontendServer }}
+          >
+            <Main />
+          </ExampleTinyFrontendServerContext.Provider>
           <div id="main" />
           <NextScript />
         </body>
@@ -40,8 +48,8 @@ export default class LayoutDocument extends Document<CustomInitialProps> {
     const originalRenderPage = ctx.renderPage;
 
     try {
-      const { tinyFrontendSsrConfig } =
-        await ensureExampleTinyFrontendLoadedServer();
+      const { tinyFrontendSsrConfig, ExampleTinyFrontendServer } =
+        await loadTinyFrontendServer();
 
       ctx.renderPage = () =>
         originalRenderPage({
@@ -54,6 +62,7 @@ export default class LayoutDocument extends Document<CustomInitialProps> {
       return {
         ...initialProps,
         tinyFrontendSsrConfig,
+        ExampleTinyFrontendServer,
         styles: (
           <>
             {initialProps.styles}
