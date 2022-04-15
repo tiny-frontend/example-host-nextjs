@@ -50,7 +50,7 @@ const Index: NextPage = () => {
             </Link>
           </li>
           <li>
-            <Link href="/client-side-only">
+            <Link href="/client-side-only" passHref>
               <StyledAnchor className="border-b-2">
                 A tiny frontend loaded{" "}
                 <strong className="text-primary-base">client side only</strong>

@@ -25,7 +25,7 @@ const Home: NextPage = () => {
           displays on page load ✨ !
         </p>
       </DescriptionBlock>
-      <ExampleTinyFrontend name={"Next.js"} onCounterChange={setCounter} />
+      <ExampleTinyFrontend name="Next.js" onCounterChange={setCounter} />
       <p>
         You have pressed the button inside the tiny frontend{" "}
         <strong>{counter} times</strong>.
