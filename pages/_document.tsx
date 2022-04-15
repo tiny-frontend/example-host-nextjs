@@ -13,6 +13,7 @@ import { ServerStyleSheet } from "styled-components";
 
 import { loadTinyFrontendServer } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.server";
 import { TinyFrontendServerStorage } from "../components/ExampleTinyFrontend/TinyFrontendServerStorage";
+import { StyledAnchor } from "../components/styled-anchor";
 
 interface CustomInitialProps extends DocumentInitialProps {
   tinyFrontendSsrConfig: TinyFrontendSsrConfig;
@@ -26,9 +27,24 @@ export default class LayoutDocument extends Document<CustomInitialProps> {
         <Head>
           <TinyHead config={tinyFrontendSsrConfig} />
         </Head>
-        <body>
-          <Main />
-          <div id="main" />
+        <body className="p-4 pt-8 bg-dark text-white max-w-4xl m-auto">
+          <main className="space-y-8 md:space-y-12">
+            <h1 className="flex flex-col space-y-4 justify-center items-center md:flex-row md:space-x-4 md:space-y-0">
+              <img src="/logo.png" alt="" width="44" />
+              <span className="text-3xl md:text-5xl font-bold text-center">
+                Example Next.js tiny frontend host
+              </span>
+            </h1>
+            <Main />
+            <div id="main" />
+            <div className="text-gray-400 text-sm text-right">
+              Curious how it all works 🐰 ?{" "}
+              <StyledAnchor href="https://tiny-frontend.github.io/guide/about.html">
+                Checkout the docs
+              </StyledAnchor>{" "}
+              📖 !
+            </div>
+          </main>
           <NextScript />
         </body>
       </Html>
