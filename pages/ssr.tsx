@@ -3,14 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { DescriptionBlock } from "../components/description-block";
-import { ExampleTinyFrontendClient } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.client";
-import { TinyFrontendServerStorage } from "../components/ExampleTinyFrontend/TinyFrontendServerStorage";
+import ExampleTinyFrontend from "../components/ExampleTinyFrontend";
 import { StyledAnchor } from "../components/styled-anchor";
 
 const Home: NextPage = () => {
-  const ExampleTinyFrontend =
-    TinyFrontendServerStorage.Component ?? ExampleTinyFrontendClient;
-
   const [counter, setCounter] = useState(0);
 
   return (

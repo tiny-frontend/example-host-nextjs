@@ -12,7 +12,6 @@ import React from "react";
 import { ServerStyleSheet } from "styled-components";
 
 import { loadTinyFrontendServer } from "../components/ExampleTinyFrontend/ExampleTinyFrontend.server";
-import { TinyFrontendServerStorage } from "../components/ExampleTinyFrontend/TinyFrontendServerStorage";
 import { StyledAnchor } from "../components/styled-anchor";
 
 interface CustomInitialProps extends DocumentInitialProps {
@@ -58,10 +57,7 @@ export default class LayoutDocument extends Document<CustomInitialProps> {
     const originalRenderPage = ctx.renderPage;
 
     try {
-      const { tinyFrontendSsrConfig, ExampleTinyFrontendServer } =
-        await loadTinyFrontendServer();
-
-      TinyFrontendServerStorage.Component = ExampleTinyFrontendServer;
+      const { tinyFrontendSsrConfig } = await loadTinyFrontendServer();
 
       ctx.renderPage = () =>
         originalRenderPage({
