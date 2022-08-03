@@ -16,8 +16,8 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@tiny-frontend/client": "^0.0.8",
     "@cazoo/eslint-plugin-eslint": "^1.0.2",
+    "@tiny-frontend/client": "^0.0.9",
     "@types/node": "17.0.18",
     "@types/react": "17.0.39",
     "@types/react-dom": "^17.0.11",
