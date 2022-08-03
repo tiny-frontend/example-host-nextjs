@@ -3,7 +3,6 @@ import {
   loadExampleTinyFrontendClient
 } from "@tiny-frontend/example-tiny-frontend-contract";
 import type { NextPage } from "next";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { DescriptionBlock } from "../components/description-block";

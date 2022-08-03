@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import Link from "next/link";
 
 import { DescriptionBlock } from "../components/description-block";
 import { StyledAnchor } from "../components/styled-anchor";
@@ -20,6 +19,7 @@ const Index: NextPage = () => {
           app that can load a{" "}
           <StyledAnchor
             href="https://tiny-frontend.github.io/"
+            target="_blank"
             rel="noreferrer"
           >
             tiny frontend

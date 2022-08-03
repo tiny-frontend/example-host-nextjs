@@ -6,6 +6,7 @@ import { ExampleTinyFrontendClient } from "./ExampleTinyFrontend.client";
 const ExampleTinyFrontend: ExampleTinyFrontendType = (props) => (
   <MicrofrontendsContext.Consumer>
     {({ ExampleTinyFrontendServer }) => {
+      console.log({ ExampleTinyFrontendServer, ExampleTinyFrontendClient });
       const ExampleTinyFrontend =
         ExampleTinyFrontendServer ?? ExampleTinyFrontendClient;
       return <ExampleTinyFrontend {...props} />;

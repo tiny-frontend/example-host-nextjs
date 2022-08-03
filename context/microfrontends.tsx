@@ -2,34 +2,52 @@ import { ExampleTinyFrontendType } from "@tiny-frontend/example-tiny-frontend-co
 import React, { PropsWithChildren, ReactNode } from "react";
 
 export interface MicroFrontendStore {
-  ExampleTinyFrontendServer: ExampleTinyFrontendType;
+  ExampleTinyFrontendServer: ExampleTinyFrontendType | string;
 }
 
 export const initialState: MicroFrontendStore = {
-  ExampleTinyFrontendServer: () => null,
+  ExampleTinyFrontendServer: () => null
 };
 
 const MicrofrontendsContext =
   React.createContext<MicroFrontendStore>(initialState);
 
-const MicrofrontendsContextProvider: React.FC<PropsWithChildren<any>> = ({
+const getMicrofrontends = (values: MicroFrontendStore): MicroFrontendStore =>
+  Object.keys(values).reduce(
+    (acc, curr) => {
+      if (
+        // ignore this hard check
+        curr === "ExampleTinyFrontendServer" &&
+        typeof values.ExampleTinyFrontendServer === "string"
+      ) {
+        const fnWorking = "return function () { return `Hello, world` }";
+        const [args, ...rest] = values.ExampleTinyFrontendServer.split("=>");
+        const fn = `return function ${curr}${args} ${rest.join("=>")}`;
+        console.log({ fn });
+
+        return {
+          ...acc,
+          ExampleTinyFrontendServer: new Function(fn)() // if we replace with fnWorking, it works
+        };
+      }
+      return { ...acc };
+    },
+    { ...values }
+  );
+
+const MicrofrontendsProvider: React.FC<PropsWithChildren<any>> = ({
   value,
-  children,
+  children
 }: {
   value: MicroFrontendStore;
   children: ReactNode;
 }) => {
+  const store = getMicrofrontends(value);
   return (
-    <MicrofrontendsContext.Provider value={value}>
+    <MicrofrontendsContext.Provider value={store}>
       {children}
     </MicrofrontendsContext.Provider>
   );
 };
 
-const MicrofrontendsContextConsumer = MicrofrontendsContext.Consumer;
-
-export {
-  MicrofrontendsContext,
-  MicrofrontendsContextConsumer,
-  MicrofrontendsContextProvider,
-};
+export { MicrofrontendsContext, MicrofrontendsProvider };
