@@ -1,6 +1,6 @@
 import {
   ExampleTinyFrontendType,
-  loadExampleTinyFrontendClient,
+  loadExampleTinyFrontendClient
 } from "@tiny-frontend/example-tiny-frontend-contract";
 import type { NextPage } from "next";
 import Link from "next/link";
@@ -49,9 +49,9 @@ const Home: NextPage = () => {
         You have pressed the button inside the tiny frontend{" "}
         <strong>{counter} times</strong>.
       </p>
-      <Link href="/" passHref>
-        <StyledAnchor className="inline-block">← Back to index</StyledAnchor>
-      </Link>
+      <StyledAnchor href="/" className="inline-block">
+        ← Back to index
+      </StyledAnchor>
     </div>
   );
 };

@@ -26,9 +26,9 @@ const Home: NextPage = () => {
         You have pressed the button inside the tiny frontend{" "}
         <strong>{counter} times</strong>.
       </p>
-      <Link href="/" passHref>
-        <StyledAnchor className="inline-block">← Back to index</StyledAnchor>
-      </Link>
+      <StyledAnchor href="/" className="inline-block">
+        ← Back to index
+      </StyledAnchor>
     </div>
   );
 };

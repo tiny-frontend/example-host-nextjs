@@ -20,7 +20,6 @@ const Index: NextPage = () => {
           app that can load a{" "}
           <StyledAnchor
             href="https://tiny-frontend.github.io/"
-            target="_blank"
             rel="noreferrer"
           >
             tiny frontend
@@ -40,22 +39,18 @@ const Index: NextPage = () => {
         </p>
         <ul className="flex flex-col gap-2 md:flex-row md:gap-6 justify-center">
           <li>
-            <Link href="/ssr" passHref>
-              <StyledAnchor>
-                A tiny frontend loaded{" "}
-                <strong className="text-primary-base">
-                  on SSR and client side
-                </strong>
-              </StyledAnchor>
-            </Link>
+            <StyledAnchor href="/ssr">
+              A tiny frontend loaded{" "}
+              <strong className="text-primary-base">
+                on SSR and client side
+              </strong>
+            </StyledAnchor>
           </li>
           <li>
-            <Link href="/client-side-only" passHref>
-              <StyledAnchor className="border-b-2">
-                A tiny frontend loaded{" "}
-                <strong className="text-primary-base">client side only</strong>
-              </StyledAnchor>
-            </Link>
+            <StyledAnchor href="/client-side-only" className="border-b-2">
+              A tiny frontend loaded{" "}
+              <strong className="text-primary-base">client side only</strong>
+            </StyledAnchor>
           </li>
         </ul>
       </div>
